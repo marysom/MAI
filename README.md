@@ -1,2 +1,3 @@
 # python
-small steps to great success
+- numerical methods
+- RZD
