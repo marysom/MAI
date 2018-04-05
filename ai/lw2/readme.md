@@ -1,1 +1,137 @@
+# Отчет по лабораторной работе №2
+## По курсу "Искусственный интеллект"
+### Линейная регрессия
+_______________________________________
+#### *Выполнила студентка группы 8О-304Б*
+#### *Сомова Мария*
+_______________________________________
 
+### Задание
+1. Построить модель линейной регрессии для выборки Global CO2.
+2. Проверить возможность переобучения. Визуализировать все данные и полученную на выходе линию.
+3. Поэксперементировать с методами обработки ситуации с неопределенностью значения признака.
+
+### Решение
+**listing**
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+import seaborn as sns
+import quandl 
+import math
+import numpy as np
+
+data = pd.read_csv("global_co2.csv")  #считываем данные
+data.columns=['Year',       'Total',       'Gas Fuel',    'Liquid Fuel',
+              'Solid Fuel', 'Cement',      'Gas Flaring', 'Per Capita']
+data.info()  #узнаём немного больше о наших данных
+print('-------------------------------------')
+print(data.isnull().any()) 
+print('-------------------------------------')
+print('Исходные данные:')
+print(data.head())
+print('-------------------------------------')
+```
+
+**output**
+```
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 260 entries, 0 to 259
+Data columns (total 8 columns):
+Year           260 non-null int64
+Total          260 non-null int64
+Gas Fuel       260 non-null int64
+Liquid Fuel    260 non-null int64
+Solid Fuel     260 non-null int64
+Cement         260 non-null int64
+Gas Flaring    260 non-null int64
+Per Capita     61 non-null float64
+dtypes: float64(1), int64(7)
+memory usage: 16.3 KB
+-------------------------------------
+Year           False
+Total          False
+Gas Fuel       False
+Liquid Fuel    False
+Solid Fuel     False
+Cement         False
+Gas Flaring    False
+Per Capita      True
+dtype: bool
+-------------------------------------
+Исходные данные:
+   Year  Total  Gas Fuel  Liquid Fuel  Solid Fuel  Cement  Gas Flaring  \
+0  1751      3         0            0           3       0            0   
+1  1752      3         0            0           3       0            0   
+2  1753      3         0            0           3       0            0   
+3  1754      3         0            0           3       0            0   
+4  1755      3         0            0           3       0            0   
+
+   Per Capita  
+0         NaN  
+1         NaN  
+2         NaN  
+3         NaN  
+4         NaN  
+------------------------------------- 
+```
+Так как выборка Global CO2 содержит множество NaN в столбце "Per Capita", рассмотрим 3 варианта работы с NaN:  
+1. Удалим все строки, содержащие NaN;
+2. Заменим NaN на среднее значение по столбцу "Per Capita";  
+3. Заменим NaN на значение вне диапазона (возьмём максимальное значение из столбца "Per Capita" + 0.2);  
+  
+**listinge**
+```python
+data1 = data.dropna()  #удаляем все строки, содержащие NaN
+print('Данные без NA')
+print(data1.head())
+print(data1.shape)
+print('-------------------------------------')
+per_capita=data['Per Capita'].values
+def search_1st_notnan(per_capita):  #функция, выполняющая поиск первого отличного от NaN значения в per_capita
+    i=0
+    while i < len(per_capita):
+        if math.isnan(per_capita[i]):
+            i+=1
+        else:
+            break
+    return i
+
+def out_of_range(per_capita):  #функция, возвращающая значение большее, чем максимальный элемент из per_capita
+    k=search_1st_notnan(per_capita)
+    maxper=per_capita[k]
+    for i in range(k+1,len(per_capita)):
+        if (per_capita[i]>maxper)and(not math.isnan(per_capita[i])):
+            maxper=per_capita[i]
+    return maxper+0.2
+
+def average(per_capita):  #функция, возвращающая среднее значение per_capita
+    k=search_1st_notnan(per_capita)
+    sumper=0
+    count=0
+    for i in range(k+1, len(per_capita)):
+        if not math.isnan(per_capita[i]):
+            sumper+=per_capita[i]
+            count+=1
+    aver=sumper/count
+    return aver
+            
+print('1st not NA = ',search_1st_notnan(per_capita))
+print('-------------------------------------')
+print('average = ', average(per_capita))
+print('-------------------------------------')
+data2=data.fillna(average(per_capita))
+print('Данные с заменой NA на среднее')
+print(data2.head())
+print(data2.shape)
+print('-------------------------------------')
+print('out of range = ',out_of_range(per_capita))
+print('-------------------------------------')
+print('Данные с заменой NA на значение вне диапазона')
+data3=data.fillna(out_of_range(per_capita))
+print(data3.head())
+print(data3.shape)
+print('-------------------------------------')
+```
+### Вывод
