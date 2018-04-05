@@ -192,13 +192,21 @@ out of range =  1.53
 (260, 8)
 -------------------------------------
 ```
-Визуализируем исходные данные:
+Визуализируем исходные данные:  
 
+**listing**
 ```python
 sns_data=sns.heatmap(data.corr(), annot=True)
 useful_columns = ['Gas Fuel', 'Liquid Fuel', 'Solid Fuel', 'Cement', 'Gas Flaring']
 sns_pair=sns.pairplot(data[useful_columns])
 ```
+Корреляционая карта исходных данных выглядит следующим образом:  
 
+![sns_data](https://github.com/marysom/python/blob/master/ai/lw2/corr.png)
+  
+Рассмотрим sns_pair:  
+Можно увидеть, как связаны между собой различные признаки. На диагонали матрицы графиков расположены гистограммы распределений признака. Остальные же графики — это обычные scatter plots для соответствующих пар признаков.
+
+![sns_pair](https://github.com/marysom/python/blob/master/ai/lw2/pairplot.png)
 
 ### Вывод
