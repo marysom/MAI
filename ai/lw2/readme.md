@@ -80,7 +80,7 @@ dtype: bool
 2. Заменим NaN на среднее значение по столбцу "Per Capita";  
 3. Заменим NaN на значение вне диапазона (возьмём максимальное значение из столбца "Per Capita" + 0.2);  
   
-**listinge**
+**listing**
 ```python
 data1 = data.dropna()  #удаляем все строки, содержащие NaN
 print('Данные без NA')
@@ -208,8 +208,13 @@ sns_pair=sns.pairplot(data[useful_columns])
 
 ![sns_pair](https://github.com/marysom/python/blob/master/ai/lw2/pairplot.png)  
 
+Будем делить выборку в соотношении 70% тренировочных данных, 30% - тестовых.  Рассмотрим две зависимости:   
+1. Per Capita от Total;
+2. Per Capita от Year;  
+
 Построим модель линейной регрессии для data1 (без NaN):  
 
+**listing**
 ```python
 '''-------------------------------------------------'''
 a=len(data1['Per Capita'])
@@ -244,5 +249,93 @@ plt.ylabel('per capita (без NA)')
 plt.grid()
 plt.show()
 ```
+![per_capita-total](https://github.com/marysom/python/blob/master/ai/lw2/Figure_1.png)  
+
+![per_capita-year](https://github.com/marysom/python/blob/master/ai/lw2/Figure_2.png)
+
+Построим модель линейной регрессии для data2 (с заменой NaN на среднее значение):  
+
+**listing**
+```python
+'''-------------------------------------------------'''
+a=len(data2['Per Capita'])
+a=math.floor(a*0.7)
+
+model2 = LinearRegression()
+x2 = data2[useful_columns]
+y2 = data2['Per Capita']
+x2_train=x2[:a]
+x2_test=x2[a:]
+y2_train=y2[:a]
+y2_test=y2[a:]
+model2.fit(x2_train, y2_train)
+pred_test = model2.predict(x2_test)
+pred_train=model2.predict(x2_train)
+
+plt.figure()
+plt.scatter(data2["Total"], y2, color = 'black', s=5)
+plt.plot(data2["Total"][:a], pred_train, color = 'blue')
+plt.plot(data2["Total"][a:], pred_test, color = 'green')
+plt.xlabel('total')
+plt.ylabel('per capita (с заменой NA на среднее значение)')
+plt.grid()
+plt.show()
+
+plt.figure()
+plt.scatter(data2["Year"], y2, color = 'black', s=5)
+plt.plot(data2["Year"][:a], pred_train, color = 'blue')
+plt.plot(data2["Year"][a:], pred_test, color = 'green')
+plt.xlabel('year') 
+plt.ylabel('per capita (с заменой NA на среднее значение)')
+plt.grid()
+plt.show()
+```
+
+![percap-total](https://github.com/marysom/python/blob/master/ai/lw2/Figure_3.png)  
+
+![percap-year](https://github.com/marysom/python/blob/master/ai/lw2/Figure_4.png)  
+
+Построим модель линейной регрессии для data3 (с заменой NaN на значение вне диапазона):  
+
+**listing**
+```python
+'''-------------------------------------------------'''
+a=len(data3['Per Capita'])
+a=math.floor(a*0.7)
+
+model3 = LinearRegression()
+x3 = data3[useful_columns]
+y3 = data3['Per Capita']
+x3_train=x3[:a]
+x3_test=x3[a:]
+y3_train=y3[:a]
+y3_test=y3[a:]
+model3.fit(x3_train, y3_train)
+pred_test = model3.predict(x3_test)
+pred_train=model3.predict(x3_train)
+
+plt.figure()
+plt.scatter(data3["Total"], y3, color = 'black', s=5)
+plt.plot(data3["Total"][:a], pred_train, color = 'blue')
+plt.plot(data3["Total"][a:], pred_test, color = 'green')
+plt.xlabel('total')
+plt.ylabel('per capita (с заменой NA на значение вне диапазона)')
+plt.grid()
+plt.show()
+
+plt.figure()
+plt.scatter(data3["Year"], y3, color = 'black', s=5)
+plt.plot(data3["Year"][:a], pred_train, color = 'blue')
+plt.plot(data3["Year"][a:], pred_test, color = 'green')
+plt.xlabel('year') 
+plt.ylabel('per capita (с заменой NA на значение вне диапазона)')
+plt.grid()
+plt.show()
+```
+
+![per-total](https://github.com/marysom/python/blob/master/ai/lw2/Figure_5.png)  
+
+![per-year](https://github.com/marysom/python/blob/master/ai/lw2/Figure_6.png)  
+
 
 ### Вывод
