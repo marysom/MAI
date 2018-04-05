@@ -2,8 +2,7 @@
 ## По курсу "Искусственный интеллект"
 ### Линейная регрессия
 _______________________________________
-#### *Выполнила студентка группы 8О-304Б*
-#### *Сомова Мария*
+#### Выполнила студентка группы 8О-304Б [Сомова Мария](https://github.com/marysom/python/tree/master/ai/lw2)
 _______________________________________
 
 ### Задание
@@ -207,6 +206,43 @@ sns_pair=sns.pairplot(data[useful_columns])
 Рассмотрим sns_pair:  
 Можно увидеть, как связаны между собой различные признаки. На диагонали матрицы графиков расположены гистограммы распределений признака. Остальные же графики — это обычные scatter plots для соответствующих пар признаков.
 
-![sns_pair](https://github.com/marysom/python/blob/master/ai/lw2/pairplot.png)
+![sns_pair](https://github.com/marysom/python/blob/master/ai/lw2/pairplot.png)  
+
+Построим модель линейной регрессии для data1 (без NaN):  
+
+```python
+'''-------------------------------------------------'''
+a=len(data1['Per Capita'])
+a=math.floor(a*0.7)
+
+model1 = LinearRegression()
+x1 = data1[useful_columns]
+y1 = data1['Per Capita']
+x1_train=x1[:a]
+x1_test=x1[a:]
+y1_train=y1[:a]
+y1_test=y1[a:]
+model1.fit(x1_train, y1_train)
+pred_test = model1.predict(x1_test)
+pred_train=model1.predict(x1_train)
+
+plt.figure()
+plt.scatter(data1["Total"], y1, color = 'black', s=5)
+plt.plot(data1["Total"][:a], pred_train, color = 'blue')
+plt.plot(data1["Total"][a:], pred_test, color = 'green')
+plt.xlabel('total')
+plt.ylabel('per capita (без NA)')
+plt.grid()
+plt.show()
+
+plt.figure()
+plt.scatter(data1["Year"], y1, color = 'black', s=5)
+plt.plot(data1["Year"][:a], pred_train, color = 'blue')
+plt.plot(data1["Year"][a:], pred_test, color = 'green')
+plt.xlabel('year') 
+plt.ylabel('per capita (без NA)')
+plt.grid()
+plt.show()
+```
 
 ### Вывод
