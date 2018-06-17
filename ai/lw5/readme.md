@@ -137,7 +137,7 @@ Name: keyword, dtype: object
 18               попугай жако        0
 19               попугай цена        0
 ```
-
+Результат кластеризации в случае разбиения на 3 кластера: [result_3.txt](https://github.com/marysom/python/blob/master/ai/lw5/result_3.txt)
 ```
 Введите колчество кластеров:
 7
@@ -164,8 +164,7 @@ Name: keyword, dtype: object
 18               попугай жако        1
 19               попугай цена        1
 ```
-
-
+Результат кластеризации в случае разбиения на 7 кластеров: [result_7.txt](https://github.com/marysom/python/blob/master/ai/lw5/result_7.txt)
 ```
 Введите колчество кластеров:
 10
@@ -192,3 +191,4 @@ Name: keyword, dtype: object
 18               попугай жако        3
 19               попугай цена        3
 ```
+Результат кластеризации в случае разбиения на 10 кластеров: [result_10.txt](https://github.com/marysom/python/blob/master/ai/lw5/result_10.txt)
