@@ -1,5 +1,5 @@
-# python
-- numerical methods
-- ai
-- RZD
+# МАИ
+- Численные методы (nm)
+- Искусственный интеллект (ai)
+
 
