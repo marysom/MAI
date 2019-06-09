@@ -1,9 +1,9 @@
 ## Численные методы
 
-- [Лабораторная работа №1](https://github.com/marysom/MAI/tree/master/nm/lab1).
-- [Лабораторная работа №2](https://github.com/marysom/MAI/tree/master/nm/lab2).
-- [Лабораторная работа №3](https://github.com/marysom/MAI/tree/master/nm/lab3).
-- [Лабораторная работа №4](https://github.com/marysom/MAI/tree/master/nm/lab4).
+- [Лабораторная работа №1](https://github.com/marysom/MAI/tree/master/nm/lab1). _Методы решения задач линейной алгебры._
+- [Лабораторная работа №2](https://github.com/marysom/MAI/tree/master/nm/lab2). _Методы решения нелинейных уравнений и систем нелинейных уравнений._
+- [Лабораторная работа №3](https://github.com/marysom/MAI/tree/master/nm/lab3). _Методы приближения функций.Численное дифференцирование и интегрирование._
+- [Лабораторная работа №4](https://github.com/marysom/MAI/tree/master/nm/lab4). _Методы решения начальных и краевых задач для обыкновенных дифференциальных уравнений (ОДУ) и систем ОДУ._
 - [Лабораторная работа №5](https://github.com/marysom/MAI/tree/master/nm/lab5). _Решение начально-краевой задачи для дифференциального уравнения параболического типа._
 - [Лабораторная работа №6](https://github.com/marysom/MAI/tree/master/nm/lab6). _Решение начально-краевой задачи для дифференциального уравнения гиперболического типа._
 - [Лабораторная работа №7](https://github.com/marysom/MAI/tree/master/nm/lab7). _Решение краевой задачи для дифференциального уравнения эллиптического типа._
