@@ -1,22 +1,22 @@
 CREATE TABLE films (
-  title TEXT,
-  id BIGINT,
-  country TEXT,
-  box_office FLOAT,
-  releas_date DATE
+    title TEXT
+  , id BIGINT
+  , country TEXT
+  , box_office FLOAT
+  , releas_date DATE
 )
 ;
 
 CREATE TABLE person (
-  id BIGINT,
-  fio TEXT
+    id BIGINT
+  , fio TEXT
 )
 ;
 
 CREATE TABLE person2content (
-  person_id BIGINT,
-  film_id BIGINT,
-  person_type TEXT
+    person_id BIGINT
+  , film_id BIGINT
+  , person_type TEXT
 )
 ;
 
