@@ -19,11 +19,11 @@
 - 4.1 Подзапросы: достать любые 10 imbdId из links у которых средний рейтинг больше 3.5.
 - 4.2 Common Table Expressions: посчитать средний рейтинг по пользователям, у которых более 10 оценок.  Нужно подсчитать средний рейтинг по все пользователям, которые попали под условие - то есть в ответе должно быть одно число.
 
-Листинг [hw2.sql]()
+Листинг [hw2.sql](https://github.com/marysom/MAI/blob/master/data_management/hw/2/hw2.sql)
 ```sql
 
 ```
 
-![]()
+![1](https://github.com/marysom/MAI/blob/master/data_management/hw/2/hw2_1.png)
 
-![]()
+![2](https://github.com/marysom/MAI/blob/master/data_management/hw/2/hw2_2.png)
