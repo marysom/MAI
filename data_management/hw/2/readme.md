@@ -101,7 +101,8 @@ FROM useful_users AS u
 	ratings AS r
 		ON 
 			u.userid = r.userid
-;
+; 
+
 ```
 
 ![1](https://github.com/marysom/MAI/blob/master/data_management/hw/2/hw2_1.png)
