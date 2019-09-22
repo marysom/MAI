@@ -78,4 +78,4 @@ FROM useful_users AS u
 	ratings AS r
 		ON 
 			u.userid = r.userid
-;
+; 
