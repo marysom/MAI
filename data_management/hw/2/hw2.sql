@@ -79,4 +79,3 @@ FROM useful_users AS u
 		ON 
 			u.userid = r.userid
 ;
-
