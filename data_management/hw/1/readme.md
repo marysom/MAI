@@ -18,7 +18,7 @@
 - film_id (число) - id контента
 - person_type (текст) тип персоны (актёр, режиссёр и т.д.)
 
-Листинг [hw1.sql]()
+Листинг [hw1.sql](https://github.com/marysom/MAI/blob/master/data_management/hw/1/hw1.sql)
 ```sql
 CREATE TABLE films (
     title TEXT
